@@ -67,7 +67,9 @@ if nombre:
 
     # Reservar nueva sesión
     if len(sesiones_propias) < 2:
-        nueva_fecha = st.datetime_input("Selecciona fecha y hora para reservar")
+        fecha = st.date_input("Selecciona la fecha")
+        hora = st.time_input("Selecciona la hora")
+        nueva_fecha = datetime.combine(fecha, hora)
         if st.button("Reservar sesión"):
             data = reservar_sesion(data, nombre, nueva_fecha)
     else:
@@ -81,3 +83,4 @@ for usuario, info in data.items():
     st.write(f"**{usuario}**:")
     for s in info["sesiones"]:
         st.write(f"🔹 {datetime.fromisoformat(s).strftime('%Y-%m-%d %H:%M')}")
+
